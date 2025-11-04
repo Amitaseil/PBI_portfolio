@@ -1,0 +1,105 @@
+cohort_% = 
+
+VAR _First_Month = 
+    CALCULATE(
+        [act_pl_count_alt],
+            FILTER(
+                ALL(dim_activity_month[activity_month]),
+                    dim_activity_month[activity_month] = 0)
+        )
+VAR _First_Week = 
+    CALCULATE(
+        [act_pl_count_alt],
+            FILTER(
+                ALL(dim_activity_week[activity_week]),
+                    dim_activity_week[activity_week] = 0)
+        )
+VAR _First_Day = 
+    CALCULATE(
+        [act_pl_count_alt],
+            FILTER(
+                ALL(dim_activity_day[activity_day]),
+                    dim_activity_day[activity_day] = 0)
+        )
+
+VAR _Cohort_total_m_perc = 
+    DIVIDE(
+        [act_pl_count_alt],
+            _First_Month
+    )
+VAR _Cohort_total_w_perc = 
+    DIVIDE(
+        [act_pl_count_alt],
+            _First_Week
+    )
+VAR _Cohort_total_d_perc = 
+    DIVIDE(
+        [act_pl_count_alt],
+            _First_Day
+    )
+
+VAR max_init_tt_players = CALCULATE(
+    MAXX(
+        ALL(dim_calendar[Month]),
+            [act_pl_count_alt]
+        ), 
+        VALUES('dim_days_from_reg'[days_from_reg]),
+        VALUES(dim_transport_type[transport_type])
+    )
+
+VAR max_init_oc_players = 
+CALCULATE(
+     [act_pl_count_alt],
+    REMOVEFILTERS(dim_open_click)
+)
+
+RETURN
+            IF(
+                ISINSCOPE(dim_open_click[open_click]),
+                SWITCH(
+                    MAX(par_period[par_period]),
+                        "Day",
+                            DIVIDE(
+                                CALCULATE(
+                                    [act_pl_count_alt],
+                                        ALLEXCEPT(dim_calendar, dim_calendar[Day])
+                                    ),
+                                max_init_oc_players
+                                ),
+                        "Week",
+                            DIVIDE(
+                                CALCULATE(
+                                    [act_pl_count_alt],
+                                        ALLEXCEPT(dim_calendar, dim_calendar[Week])
+                                    ),
+                                max_init_oc_players
+                                ),
+                        "Month",
+                            DIVIDE(
+                                CALCULATE(
+                                    [act_pl_count_alt],
+                                        ALLEXCEPT(dim_calendar, dim_calendar[Month])
+                                    ),
+                                max_init_oc_players
+                                )
+                        ),
+                    IF(
+                        ISINSCOPE(dim_transport_type[transport_type]),
+                            DIVIDE(
+                                CALCULATE(
+                                    [act_pl_count_alt],
+                                        ALLEXCEPT('dim_days_from_reg', 'dim_days_from_reg'[days_from_reg])
+                                    ),
+                                max_init_tt_players
+                            ),
+                                SWITCH(
+                                    MAX(par_period[par_period]),
+                                        "Day",
+                                            _Cohort_total_d_perc,
+                                        "Week",
+                                            _Cohort_total_w_perc,
+                                        "Month",
+                                            _Cohort_total_m_perc
+                                    )
+                        )
+                )
