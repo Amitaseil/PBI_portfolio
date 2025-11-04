@@ -1,0 +1,812 @@
+act_cl_count = 
+
+VAR email = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[emailed] = TRUE()
+        )
+VAR sms = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[smsed] = TRUE()
+        )
+VAR messenger = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[messengered] = TRUE()
+        )
+VAR push = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[pushed] = TRUE()
+        )
+VAR email_open = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[emailed] = TRUE(),
+                'Active_clients_daily'[email_opened] = TRUE(),
+                'Active_clients_daily'[email_clicked] = FALSE()
+        )
+VAR email_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[emailed] = TRUE(),
+                'Active_clients_daily'[email_opened] = FALSE(),
+                'Active_clients_daily'[email_clicked] = TRUE()
+        )
+VAR email_open_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[emailed] = TRUE(),
+                'Active_clients_daily'[email_opened] = TRUE(),
+                'Active_clients_daily'[email_clicked] = TRUE()
+        )
+VAR email_no_reaction = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                        'Active_clients_daily'[emailed] = TRUE(),
+                        'Active_clients_daily'[email_opened] = FALSE(),
+                        'Active_clients_daily'[email_clicked] = FALSE()
+        )
+VAR sms_open = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[smsed] = TRUE(),
+                'Active_clients_daily'[sms_opened] = TRUE(),
+                'Active_clients_daily'[sms_clicked] = FALSE()
+        )
+VAR sms_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[smsed] = TRUE(),
+                'Active_clients_daily'[sms_opened] = FALSE(),
+                'Active_clients_daily'[sms_clicked] = TRUE()
+        )
+VAR sms_open_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[smsed] = TRUE(),
+                'Active_clients_daily'[sms_opened] = TRUE(),
+                'Active_clients_daily'[sms_clicked] = TRUE()
+        )
+VAR sms_no_reaction = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[smsed] = TRUE(),
+                'Active_clients_daily'[sms_opened] = FALSE(),
+                'Active_clients_daily'[sms_clicked] = FALSE()
+        )
+VAR messenger_open = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[messengered] = TRUE(),
+                'Active_clients_daily'[messenger_opened] = TRUE(),
+                'Active_clients_daily'[messenger_clicked] = FALSE()
+        )
+VAR messenger_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[messengered] = TRUE(),
+                'Active_clients_daily'[messenger_opened] = FALSE(),
+                'Active_clients_daily'[messenger_clicked] = TRUE()
+        )
+VAR messenger_open_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[messengered] = TRUE(),
+                'Active_clients_daily'[messenger_opened] = TRUE(),
+                'Active_clients_daily'[messenger_clicked] = TRUE()
+        )
+VAR messenger_no_reaction = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[messengered] = TRUE(),
+                'Active_clients_daily'[messenger_opened] = FALSE(),
+                'Active_clients_daily'[messenger_clicked] = FALSE()
+        )
+VAR push_open = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[pushed] = TRUE(),
+                'Active_clients_daily'[push_opened] = TRUE(),
+                'Active_clients_daily'[push_clicked] = FALSE()
+        )
+VAR push_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[pushed] = TRUE(),
+                'Active_clients_daily'[push_opened] = FALSE(),
+                'Active_clients_daily'[push_clicked] = TRUE()
+        )
+VAR push_open_click = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[pushed] = TRUE(),
+                'Active_clients_daily'[push_opened] = TRUE(),
+                'Active_clients_daily'[push_clicked] = TRUE()
+        )
+VAR push_no_reaction = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[pushed] = TRUE(),
+                'Active_clients_daily'[push_opened] = FALSE(),
+                'Active_clients_daily'[push_clicked] = FALSE()
+        )
+VAR opened = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[email_opened] = TRUE(),
+                'Active_clients_daily'[messenger_opened] = TRUE(), 
+                'Active_clients_daily'[push_opened] = TRUE(), 
+                'Active_clients_daily'[sms_opened] = TRUE()
+        )
+VAR clicked = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[email_clicked] = TRUE(),
+                'Active_clients_daily'[messenger_clicked] = TRUE(), 
+                'Active_clients_daily'[push_clicked] = TRUE(),
+                'Active_clients_daily'[sms_clicked] = TRUE()
+        )
+VAR opened_clicked = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[email_clicked] = TRUE(),
+                'Active_clients_daily'[email_opened] = TRUE(),
+                'Active_clients_daily'[messenger_clicked] = TRUE(), 
+                'Active_clients_daily'[messenger_opened] = TRUE(), 
+                'Active_clients_daily'[push_clicked] = TRUE(),
+                'Active_clients_daily'[push_opened] = TRUE(),
+                'Active_clients_daily'[sms_clicked] = TRUE(), 
+                'Active_clients_daily'[sms_opened] = TRUE()
+        )
+VAR no_reaction = CALCULATE(SUM('Active_clients_daily'[act_cl_count]),
+                'Active_clients_daily'[emailed] = TRUE(),
+                'Active_clients_daily'[email_clicked] = FALSE(),
+                'Active_clients_daily'[email_opened] = FALSE(),
+                'Active_clients_daily'[messengered] = TRUE(),
+                'Active_clients_daily'[messenger_clicked] = FALSE(), 
+                'Active_clients_daily'[messenger_opened] = FALSE(), 
+                'Active_clients_daily'[pushed] = TRUE(),
+                'Active_clients_daily'[push_clicked] = FALSE(),
+                'Active_clients_daily'[push_opened] = FALSE(),
+                'Active_clients_daily'[smsed] = TRUE(),
+                'Active_clients_daily'[sms_clicked] = FALSE(), 
+                'Active_clients_daily'[sms_opened] = FALSE()
+        )
+// WEEKLY        
+VAR email_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[emailed] = TRUE()
+        )
+VAR sms_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[smsed] = TRUE()
+        )
+VAR messenger_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[messengered] = TRUE()
+        )
+VAR push_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[pushed] = TRUE()
+        )
+VAR email_open_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[emailed] = TRUE(),
+                'Active_clients_weekly'[email_opened] = TRUE(),
+                'Active_clients_weekly'[email_clicked] = FALSE()
+        )
+VAR email_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[emailed] = TRUE(),
+                'Active_clients_weekly'[email_opened] = FALSE(),
+                'Active_clients_weekly'[email_clicked] = TRUE()
+        )
+VAR email_open_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[emailed] = TRUE(),
+                'Active_clients_weekly'[email_opened] = TRUE(),
+                'Active_clients_weekly'[email_clicked] = TRUE()
+        )
+VAR email_no_reaction_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                        'Active_clients_weekly'[emailed] = TRUE(),
+                        'Active_clients_weekly'[email_opened] = FALSE(),
+                        'Active_clients_weekly'[email_clicked] = FALSE()
+        )
+VAR sms_open_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[smsed] = TRUE(),
+                'Active_clients_weekly'[sms_opened] = TRUE(),
+                'Active_clients_weekly'[sms_clicked] = FALSE()
+        )
+VAR sms_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[smsed] = TRUE(),
+                'Active_clients_weekly'[sms_opened] = FALSE(),
+                'Active_clients_weekly'[sms_clicked] = TRUE()
+        )
+VAR sms_open_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[smsed] = TRUE(),
+                'Active_clients_weekly'[sms_opened] = TRUE(),
+                'Active_clients_weekly'[sms_clicked] = TRUE()
+        )
+VAR sms_no_reaction_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                        'Active_clients_weekly'[smsed] = TRUE(),
+                        'Active_clients_weekly'[sms_opened] = FALSE(),
+                        'Active_clients_weekly'[sms_clicked] = FALSE()
+        )
+VAR messenger_open_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[messengered] = TRUE(),
+                'Active_clients_weekly'[messenger_opened] = TRUE(),
+                'Active_clients_weekly'[messenger_clicked] = FALSE()
+        )
+VAR messenger_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[messengered] = TRUE(),
+                'Active_clients_weekly'[messenger_opened] = FALSE(),
+                'Active_clients_weekly'[messenger_clicked] = TRUE()
+        )
+VAR messenger_open_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[messengered] = TRUE(),
+                'Active_clients_weekly'[messenger_opened] = TRUE(),
+                'Active_clients_weekly'[messenger_clicked] = TRUE()
+        )
+VAR messenger_no_reaction_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[messengered] = TRUE(),
+                'Active_clients_weekly'[messenger_opened] = FALSE(),
+                'Active_clients_weekly'[messenger_clicked] = FALSE()
+        )
+VAR push_open_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[pushed] = TRUE(),
+                'Active_clients_weekly'[push_opened] = TRUE(),
+                'Active_clients_weekly'[push_clicked] = FALSE()
+        )
+VAR push_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[pushed] = TRUE(),
+                'Active_clients_weekly'[push_opened] = FALSE(),
+                'Active_clients_weekly'[push_clicked] = TRUE()
+        )
+VAR push_open_click_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[pushed] = TRUE(),
+                'Active_clients_weekly'[push_opened] = TRUE(),
+                'Active_clients_weekly'[push_clicked] = TRUE()
+        )
+VAR push_no_reaction_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[pushed] = TRUE(),
+                'Active_clients_weekly'[push_opened] = FALSE(),
+                'Active_clients_weekly'[push_clicked] = FALSE()
+        )
+VAR opened_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[email_opened] = TRUE(), 
+                'Active_clients_weekly'[messenger_opened] = TRUE(), 
+                'Active_clients_weekly'[push_opened] = TRUE(), 
+                'Active_clients_weekly'[sms_opened] = TRUE()
+        )
+VAR clicked_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[email_clicked] = TRUE(), 
+                'Active_clients_weekly'[messenger_clicked] = TRUE(), 
+                'Active_clients_weekly'[push_clicked] = TRUE(), 
+                'Active_clients_weekly'[sms_clicked] = TRUE()
+        )
+VAR opened_clicked_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[email_clicked] = TRUE(),
+                'Active_clients_weekly'[email_opened] = TRUE(),
+                'Active_clients_weekly'[messenger_clicked] = TRUE(), 
+                'Active_clients_weekly'[messenger_opened] = TRUE(), 
+                'Active_clients_weekly'[push_clicked] = TRUE(),
+                'Active_clients_weekly'[push_opened] = TRUE(),
+                'Active_clients_weekly'[sms_clicked] = TRUE(), 
+                'Active_clients_weekly'[sms_opened] = TRUE()
+        )
+VAR no_reaction_weekly = CALCULATE(SUM('Active_clients_weekly'[act_cl_count]),
+                'Active_clients_weekly'[emailed] = TRUE(),
+                'Active_clients_weekly'[email_clicked] = FALSE(),
+                'Active_clients_weekly'[email_opened] = FALSE(),
+                'Active_clients_weekly'[messengered] = TRUE(),
+                'Active_clients_weekly'[messenger_clicked] = FALSE(), 
+                'Active_clients_weekly'[messenger_opened] = FALSE(), 
+                'Active_clients_weekly'[pushed] = TRUE(),
+                'Active_clients_weekly'[push_clicked] = FALSE(),
+                'Active_clients_weekly'[push_opened] = FALSE(),
+                'Active_clients_weekly'[smsed] = TRUE(),
+                'Active_clients_weekly'[sms_clicked] = FALSE(), 
+                'Active_clients_weekly'[sms_opened] = FALSE()
+        )
+//MONTHLY
+VAR email_monthly = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[emailed] = TRUE(),
+                'Active_clients_monthly'[smsed] = FALSE(),
+                'Active_clients_monthly'[messengered] = FALSE(),
+                'Active_clients_monthly'[pushed] = FALSE()
+        )
+VAR sms_monthly = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[smsed] = TRUE(),
+                'Active_clients_monthly'[emailed] = FALSE(),
+                'Active_clients_monthly'[messengered] = FALSE(),
+                'Active_clients_monthly'[pushed] = FALSE()
+        )
+VAR messenger_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[messengered] = TRUE(),
+                'Active_clients_monthly'[smsed] = FALSE(),
+                'Active_clients_monthly'[emailed] = FALSE(),
+                'Active_clients_monthly'[pushed] = FALSE()
+        )
+VAR push_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[pushed] = TRUE(),
+                'Active_clients_monthly'[smsed] = FALSE(),
+                'Active_clients_monthly'[emailed] = FALSE(),
+                'Active_clients_monthly'[messengered] = FALSE()
+        )
+VAR email_open_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[emailed] = TRUE(),
+                'Active_clients_monthly'[email_opened] = TRUE(),
+                'Active_clients_monthly'[email_clicked] = FALSE()
+        )
+VAR email_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[emailed] = TRUE(),
+                'Active_clients_monthly'[email_opened] = FALSE(),
+                'Active_clients_monthly'[email_clicked] = TRUE()
+        )
+VAR email_open_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[emailed] = TRUE(),
+                'Active_clients_monthly'[email_opened] = TRUE(),
+                'Active_clients_monthly'[email_clicked] = TRUE()
+        )
+VAR email_no_reaction_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                        'Active_clients_monthly'[emailed] = TRUE(),
+                        'Active_clients_monthly'[email_opened] = FALSE(),
+                        'Active_clients_monthly'[email_clicked] = FALSE()
+                        // ,'Active_clients_monthly'[smsed] = FALSE(),
+                        // 'Active_clients_monthly'[messengered] = FALSE(),
+                        // 'Active_clients_monthly'[pushed] = FALSE()
+        )
+VAR sms_open_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[smsed] = TRUE(),
+                'Active_clients_monthly'[sms_opened] = TRUE(),
+                'Active_clients_monthly'[sms_clicked] = FALSE()
+        )
+VAR sms_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[smsed] = TRUE(),
+                'Active_clients_monthly'[sms_opened] = FALSE(),
+                'Active_clients_monthly'[sms_clicked] = TRUE()
+        )
+VAR sms_open_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[smsed] = TRUE(),
+                'Active_clients_monthly'[sms_opened] = TRUE(),
+                'Active_clients_monthly'[sms_clicked] = TRUE()
+        )
+VAR sms_no_reaction_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                        'Active_clients_monthly'[smsed] = TRUE(),
+                        'Active_clients_monthly'[sms_opened] = FALSE(),
+                        'Active_clients_monthly'[sms_clicked] = FALSE()
+        )
+VAR messenger_open_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[messengered] = TRUE(),
+                'Active_clients_monthly'[messenger_opened] = TRUE(),
+                'Active_clients_monthly'[messenger_clicked] = FALSE()
+        )
+VAR messenger_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[messengered] = TRUE(),
+                'Active_clients_monthly'[messenger_opened] = FALSE(),
+                'Active_clients_monthly'[messenger_clicked] = TRUE()
+        )
+VAR messenger_open_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[messengered] = TRUE(),
+                'Active_clients_monthly'[messenger_opened] = TRUE(),
+                'Active_clients_monthly'[messenger_clicked] = TRUE()
+        )
+VAR messenger_no_reaction_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[messengered] = TRUE(),
+                'Active_clients_monthly'[messenger_opened] = FALSE(),
+                'Active_clients_monthly'[messenger_clicked] = FALSE()
+        )
+VAR push_open_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[pushed] = TRUE(),
+                'Active_clients_monthly'[push_opened] = TRUE(),
+                'Active_clients_monthly'[push_clicked] = FALSE()
+        )
+VAR push_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[pushed] = TRUE(),
+                'Active_clients_monthly'[push_opened] = FALSE(),
+                'Active_clients_monthly'[push_clicked] = TRUE()
+        )
+VAR push_open_click_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[pushed] = TRUE(),
+                'Active_clients_monthly'[push_opened] = TRUE(),
+                'Active_clients_monthly'[push_clicked] = TRUE()
+        )
+VAR push_no_reaction_monthly  = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[pushed] = TRUE(),
+                'Active_clients_monthly'[push_opened] = FALSE(),
+                'Active_clients_monthly'[push_clicked] = FALSE()
+        )
+VAR opened_monthly = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[email_opened] = TRUE(), 
+                'Active_clients_monthly'[messenger_opened] = TRUE(), 
+                'Active_clients_monthly'[push_opened] = TRUE(), 
+                'Active_clients_monthly'[sms_opened] = TRUE()
+        )
+VAR clicked_monthly = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[email_clicked] = TRUE(), 
+                'Active_clients_monthly'[messenger_clicked] = TRUE(), 
+                'Active_clients_monthly'[push_clicked] = TRUE(), 
+                'Active_clients_monthly'[sms_clicked] = TRUE()
+        )
+VAR opened_clicked_monthly = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[email_clicked] = TRUE(),
+                'Active_clients_monthly'[email_opened] = TRUE(),
+                'Active_clients_monthly'[messenger_clicked] = TRUE(), 
+                'Active_clients_monthly'[messenger_opened] = TRUE(), 
+                'Active_clients_monthly'[push_clicked] = TRUE(),
+                'Active_clients_monthly'[push_opened] = TRUE(),
+                'Active_clients_monthly'[sms_clicked] = TRUE(), 
+                'Active_clients_monthly'[sms_opened] = TRUE()
+        )
+VAR no_reaction_monthly = CALCULATE(SUM('Active_clients_monthly'[act_cl_count]),
+                'Active_clients_monthly'[emailed] = TRUE(),
+                'Active_clients_monthly'[email_clicked] = FALSE(),
+                'Active_clients_monthly'[email_opened] = FALSE(),
+                'Active_clients_monthly'[messengered] = TRUE(),
+                'Active_clients_monthly'[messenger_clicked] = FALSE(), 
+                'Active_clients_monthly'[messenger_opened] = FALSE(), 
+                'Active_clients_monthly'[pushed] = TRUE(),
+                'Active_clients_monthly'[push_clicked] = FALSE(),
+                'Active_clients_monthly'[push_opened] = FALSE(),
+                'Active_clients_monthly'[smsed] = TRUE(),
+                'Active_clients_monthly'[sms_clicked] = FALSE(), 
+                'Active_clients_monthly'[sms_opened] = FALSE()
+        )
+RETURN
+    SWITCH(
+        MAX(par_period[par_period]),
+            "Day",
+                IF(
+                    ISINSCOPE(
+                        'dim_transport_type'[transport_type]),
+                            SUMX(
+                                VALUES( dim_transport_type[transport_type]),
+                                    SWITCH(
+                                        dim_transport_type[transport_type],
+                                        "email", 
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", email_open,
+                                                            "clicked", email_click,
+                                                            "opened & clicked", email_open_click,
+                                                            "no reaction", email_no_reaction,
+                                                            email
+                                                        )
+                                                ),
+                                        "sms",
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", sms_open,
+                                                            "clicked", sms_click,
+                                                            "opened & clicked", sms_open_click,
+                                                            "no reaction", sms_no_reaction,
+                                                            sms
+                                                        )
+                                                ),
+                                        "messenger",
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", messenger_open,
+                                                            "clicked", messenger_click,
+                                                            "opened & clicked", messenger_open_click,
+                                                            "no reaction", messenger_no_reaction,
+                                                            messenger
+                                                        )
+                                                ),
+                                        "push",
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", push_open,
+                                                            "clicked", push_click,
+                                                            "opened & clicked", push_open_click,
+                                                            "no reaction", push_no_reaction,
+                                                            push
+                                                        )
+                                                )
+                                        ,"no messages",
+                                            IF(
+                                                ISINSCOPE(dim_open_click[open_click]),
+                                                    BLANK(),
+                                                    CALCULATE(
+                                                        SUM('Active_clients_daily'[act_cl_count]),
+                                                                'Active_clients_daily'[emailed] = FALSE(),
+                                                                'Active_clients_daily'[smsed] = FALSE(),
+                                                                'Active_clients_daily'[messengered] = FALSE(),
+                                                                'Active_clients_daily'[pushed] = FALSE()
+                                                    )
+                                            )
+                                    )
+                                )
+                            ,IF(
+                                ISINSCOPE(dim_open_click[open_click]),
+                                     SUMX(
+                                        VALUES( dim_open_click[open_click] ),
+                                            SWITCH( 
+                                                dim_open_click[open_click], 
+                                                    "opened",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_open,
+                                                                        "sms", sms_open,
+                                                                        "messenger", messenger_open,
+                                                                        "push", push_open,
+                                                                        opened
+                                                                )
+                                                            ),
+                                                    "clicked",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_click,
+                                                                        "sms", sms_click,
+                                                                        "messenger", messenger_click,
+                                                                        "push", push_click,
+                                                                        clicked
+                                                                )
+                                                            ),
+                                                    "opened & clicked",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_open_click,
+                                                                        "sms", sms_open_click,
+                                                                        "messenger", messenger_open_click,
+                                                                        "push", push_open_click,
+                                                                        opened_clicked
+                                                                )
+                                                            ),
+                                                    "no reaction",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_no_reaction,
+                                                                        "sms", sms_no_reaction,
+                                                                        "messenger", messenger_no_reaction,
+                                                                        "push", push_no_reaction,
+                                                                        no_reaction
+                                                                )
+                                                            )
+                                                    // ,"no messages",
+                                                    // CALCULATE(
+                                                    //     SUM('Active_clients_daily'[act_cl_count]),
+                                                    //             'Active_clients_daily'[emailed] = FALSE(),
+                                                    //             'Active_clients_daily'[smsed] = FALSE(),
+                                                    //             'Active_clients_daily'[messengered] = FALSE(),
+                                                    //             'Active_clients_daily'[pushed] = FALSE()
+                                                    // )
+                                            )
+                                        ),
+                                SUM('Active_clients_daily'[act_cl_count]) 
+                           )
+                ),
+            "Week",
+                IF(
+                    ISINSCOPE(
+                        'dim_transport_type'[transport_type]),
+                            SUMX(
+                                VALUES( dim_transport_type[transport_type]),
+                                    SWITCH(
+                                        dim_transport_type[transport_type],
+                                        "email", 
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", email_open_weekly,
+                                                            "clicked", email_click_weekly,
+                                                            "opened & clicked", email_open_click_weekly,
+                                                            "no reaction", email_no_reaction_weekly,
+                                                            email_weekly
+                                                        )
+                                                ),
+                                        "sms",
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", sms_open_weekly,
+                                                            "clicked", sms_click_weekly,
+                                                            "opened & clicked", sms_open_click_weekly,
+                                                            "no reaction", sms_no_reaction_weekly,
+                                                            sms_weekly
+                                                        )
+                                                ),
+                                        "messenger",
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", messenger_open_weekly,
+                                                            "clicked", messenger_click_weekly,
+                                                            "opened & clicked", messenger_open_click_weekly,
+                                                            "no reaction", messenger_no_reaction_weekly,
+                                                            messenger_weekly
+                                                        )
+                                                ),
+                                        "push",
+                                                SUMX(
+                                                    VALUES( dim_open_click[open_click] ),
+                                                        SWITCH(
+                                                            dim_open_click[open_click],
+                                                            "opened", push_open_weekly,
+                                                            "clicked", push_click_weekly,
+                                                            "opened & clicked", push_open_click_weekly,
+                                                            "no reaction", push_no_reaction_weekly,
+                                                            push_weekly
+                                                        )
+                                                )
+                                        ,"no messages",
+                                            IF(
+                                                ISINSCOPE(dim_open_click[open_click]),
+                                                    BLANK(),
+                                                        CALCULATE(
+                                                            SUM('Active_clients_weekly'[act_cl_count]),
+                                                                    'Active_clients_weekly'[emailed] = FALSE(),
+                                                                    'Active_clients_weekly'[smsed] = FALSE(),
+                                                                    'Active_clients_weekly'[messengered] = FALSE(),
+                                                                    'Active_clients_weekly'[pushed] = FALSE()
+                                                        )
+                                                    )
+                                        )        
+                                )
+                            ,IF(
+                                ISINSCOPE(dim_open_click[open_click]),
+                                     SUMX(
+                                        VALUES( dim_open_click[open_click] ),
+                                            SWITCH( 
+                                                dim_open_click[open_click], 
+                                                    "opened",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_open_weekly,
+                                                                        "sms", sms_open_weekly,
+                                                                        "messenger", messenger_open_weekly,
+                                                                        "push", push_open_weekly,
+                                                                        opened_weekly
+                                                                )
+                                                            ),
+                                                    "clicked",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_click_weekly,
+                                                                        "sms", sms_click_weekly,
+                                                                        "messenger", messenger_click_weekly,
+                                                                        "push", push_click_weekly,
+                                                                        clicked_weekly
+                                                                )
+                                                            ),
+                                                    "opened & clicked",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_open_click_weekly,
+                                                                        "sms", sms_open_click_weekly,
+                                                                        "messenger", messenger_open_click_weekly,
+                                                                        "push", push_open_click_weekly,
+                                                                        opened_clicked_weekly
+                                                                )
+                                                            ),
+                                                    "no reaction",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_no_reaction_weekly,
+                                                                        "sms", sms_no_reaction_weekly,
+                                                                        "messenger", messenger_no_reaction_weekly,
+                                                                        "push", push_no_reaction_weekly,
+                                                                        no_reaction_weekly
+                                                                )
+                                                            )
+                                                    // ,"no messages",
+                                                    // CALCULATE(
+                                                    //     SUM('Active_clients_weekly'[act_cl_count]),
+                                                    //             'Active_clients_weekly'[emailed] = FALSE(),
+                                                    //             'Active_clients_weekly'[smsed] = FALSE(),
+                                                    //             'Active_clients_weekly'[messengered] = FALSE(),
+                                                    //             'Active_clients_weekly'[pushed] = FALSE()
+                                                    // )
+                                            )
+                                        ),
+                                SUM('Active_clients_weekly'[act_cl_count]) 
+                           )
+                ),
+            "Month",
+                IF(
+                    ISINSCOPE(
+                        'dim_transport_type'[transport_type]),
+                    SUMX(
+                        VALUES( dim_transport_type[transport_type]),
+                            SWITCH(
+                                dim_transport_type[transport_type],
+                                "email", 
+                                        SUMX(
+                                            VALUES( dim_open_click[open_click] ),
+                                                SWITCH(
+                                                    dim_open_click[open_click],
+                                                    "opened", email_open_monthly,
+                                                    "clicked", email_click_monthly,
+                                                    "opened & clicked", email_open_click_monthly,
+                                                    "no reaction", email_no_reaction_monthly,
+                                                    email_monthly
+                                                )
+                                        ),
+                                "sms",
+                                        SUMX(
+                                            VALUES( dim_open_click[open_click] ),
+                                                SWITCH(
+                                                    dim_open_click[open_click],
+                                                    "opened", sms_open_monthly,
+                                                    "clicked", sms_click_monthly,
+                                                    "opened & clicked", sms_open_click_monthly,
+                                                    "no reaction", sms_no_reaction_monthly,
+                                                    sms_monthly
+                                                )
+                                        ),
+                                "messenger",
+                                        SUMX(
+                                            VALUES( dim_open_click[open_click] ),
+                                                SWITCH(
+                                                    dim_open_click[open_click],
+                                                    "opened", messenger_open_monthly,
+                                                    "clicked", messenger_click_monthly,
+                                                    "opened & clicked", messenger_open_click_monthly,
+                                                    "no reaction", messenger_no_reaction_monthly,
+                                                    messenger_monthly
+                                                )
+                                        ),
+                                "push",
+                                        SUMX(
+                                            VALUES( dim_open_click[open_click] ),
+                                                SWITCH(
+                                                    dim_open_click[open_click],
+                                                    "opened", push_open_monthly,
+                                                    "clicked", push_click_monthly,
+                                                    "opened & clicked", push_open_click_monthly,
+                                                    "no reaction", push_no_reaction_monthly,
+                                                    push_monthly
+                                                )
+                                        )
+                                ,"no messages",
+                                    IF(
+                                        ISINSCOPE(dim_open_click[open_click]),
+                                            BLANK(),
+                                                CALCULATE(
+                                                    SUM('Active_clients_monthly'[act_cl_count]),
+                                                            'Active_clients_monthly'[emailed] = FALSE(),
+                                                            'Active_clients_monthly'[smsed] = FALSE(),
+                                                            'Active_clients_monthly'[messengered] = FALSE(),
+                                                            'Active_clients_monthly'[pushed] = FALSE()
+                                                )
+                                        )                  
+
+                                )
+                            ) 
+                            ,IF(
+                                ISINSCOPE(dim_open_click[open_click]),
+                                     SUMX(
+                                        VALUES( dim_open_click[open_click] ),
+                                            SWITCH( 
+                                                dim_open_click[open_click], 
+                                                    "opened",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_open_monthly,
+                                                                        "sms", sms_open_monthly,
+                                                                        "messenger", messenger_open_monthly,
+                                                                        "push", push_open_monthly,
+                                                                        opened_monthly
+                                                                )
+                                                            ),
+                                                    "clicked",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_click_monthly,
+                                                                        "sms", sms_click_monthly,
+                                                                        "messenger", messenger_click_monthly,
+                                                                        "push", push_click_monthly,
+                                                                        clicked_monthly
+                                                                )
+                                                            ),
+                                                    "opened & clicked",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_open_click_monthly,
+                                                                        "sms", sms_open_click_monthly,
+                                                                        "messenger", messenger_open_click_monthly,
+                                                                        "push", push_open_click_monthly,
+                                                                        opened_clicked_monthly
+                                                                )
+                                                            ),
+                                                    "no reaction",
+                                                        SUMX(
+                                                            VALUES(dim_transport_type[transport_type]),
+                                                                SWITCH(
+                                                                    dim_transport_type[transport_type],
+                                                                        "email", email_no_reaction_monthly,
+                                                                        "sms", sms_no_reaction_monthly,
+                                                                        "messenger", messenger_no_reaction_monthly,
+                                                                        "push", push_no_reaction_monthly,
+                                                                        no_reaction_monthly
+                                                                )
+                                                            )
+
+                                            )
+                                        ),
+                                SUM('Active_clients_monthly'[act_cl_count]) 
+                           )
+                )
+)
