@@ -12,9 +12,8 @@ Main challenges encountered while creating this report:
      
      As you can see on the screenshot, throughout _period_ and _project_ rows we calculate % of aclive clients compared to initial active clients number.
      But on _transport_type_ level (email, messenger, etc.), report is calculating % for each transport channel based on number of clients that received specific type of message during each specific period's column value and project.
-     Futhermore, on the last hierarchy level _reaction_received_, % of clients that reacted in a specific way is calculated for each individual transport type.
+     Futhermore, on the last hierarchy level _reaction_received_, % of clients that reacted in a specific way is calculated for each individual transport type that user received a message from during the period in column.
 
-     As a result, depending on chosen hierarchy level, this page's heatmap highlights main points of interest for client's retention.
+     As a result, depending on chosen hierarchy level, this page's heatmap highlights main points of interest for different aspects of clients retention process.
      The team usually used it to find out what recent campaigns "reanimated" clients in the most effecient way and was able to compare them with one another in terms of effectiveness.
 
-Other report examples can be found in a .zip file.
