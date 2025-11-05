@@ -17,3 +17,4 @@ Main challenges encountered while creating this report:
      As a result, depending on chosen hierarchy level, this page's heatmap highlights main points of interest for different aspects of clients retention process.
      The team usually used it to find out what recent campaigns "reanimated" clients in the most effecient way and was able to compare them with one another in terms of effectiveness.
 
+Looking back at these code examples one year later, there are definitely enough ways to optimize it and lower the code lines number, but that algorithm is what I discovered with my own trial and error and the end result satisfied the stakeholders.
